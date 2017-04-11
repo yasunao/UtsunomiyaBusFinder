@@ -4,6 +4,7 @@ class Ability
   def initialize(user)
     if user && user.admin?
       can :access, :rails_admin   # grant access to rails_admin
+      can :import, :all
       can :manage, :all           # allow superadmins to do anything
     end 
     # Define abilities for the passed in user here. For example:
