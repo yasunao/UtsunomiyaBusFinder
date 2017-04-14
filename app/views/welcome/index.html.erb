@@ -1,31 +1,28 @@
 <div class="jumbotron">
 	<div class="container-fluid">
-		<h2>宇都宮駅西口発バス乗り場Now</h2>
+		<h2><a href="http://kantobus.info/timetable/select/?no=1&pu_rn=436&pu_rt=1" target="_blank" class="action_button">
+			宇都宮駅西口発</a></h2>
 		<table class="table table-striped">
 			<tr>
-				<td>停留所</td>
 				<td>
-					<strong><%=@finder.f_from%></strong>
-					<a href="http://kantobus.info/timetable/select/?no=1&pu_rn=436&pu_rt=1" target="_blank" class="action_button">時刻表を表示</a>
+					乗り場：<%=@finder.bording_number%>
 				</td>
 			</tr>
 
 			<tr>
-				<td></td>
 				<td><strong><%=@finder.d_time%></strong></td>
 			</tr>
 			<tr>
-				<td><%=@finder.time_required%></td>
-				<td>（乗り場：<%=@finder.bording_number%>）<%=@finder.platform_number%> <%=@finder.platform_name%>行</td>
+				<td><%=@finder.platform_number%> <%=@finder.platform_name%>行</td>
 			</tr>
 			<tr>
 				<td><%=@finder.price%></td>	
-				<td><strong><%=@finder.a_time%></strong></td>
 			</tr>
 			<tr>
-				<td>停留所</td>
-				<td><strong><%=@finder.f_to%></strong>
-				</td>
+				<td><strong><%=@finder.a_time%>(<%=@finder.time_required%>)</strong></td>
+			</tr>
+			<tr>
+				<td><strong><%=@finder.f_to%></strong></td>
 			</tr>
 		</table>
 	</div>
