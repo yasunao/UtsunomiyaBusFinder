@@ -1,34 +1,30 @@
 <div class="jumbotron">
 	<div class="container-fluid">
-		<h2>関東バス宇都宮駅西口発、バス乗り場検索</h2>
+		<h2>宇都宮駅西口発バス乗り場Now</h2>
 		<table class="table table-striped">
 			<tr>
 				<td>停留所</td>
-				<td></td>
-				<td colspan="2">
+				<td>
 					<strong><%=@finder.f_from%></strong>
 					<a href="http://kantobus.info/timetable/select/?no=1&pu_rn=436&pu_rt=1" target="_blank" class="action_button">時刻表を表示</a>
 				</td>
 			</tr>
 
 			<tr>
-				<td><%=@finder.time_required%></td>
 				<td></td>
-				<td>
-					<strong><%=@finder.d_time%></strong><br />（乗り場：<%=@finder.bording_number%>）
-						<%=@finder.platform_number%> <%=@finder.platform_name%>行<br />
-						<strong><%=@finder.a_time%></strong>
-				</td>
-					<td>
-					<strong><%=@finder.price%></strong>
-					<br />
-				</td>
+				<td><strong><%=@finder.d_time%></strong></td>
 			</tr>
-
+			<tr>
+				<td><%=@finder.time_required%></td>
+				<td>（乗り場：<%=@finder.bording_number%>）<%=@finder.platform_number%> <%=@finder.platform_name%>行</td>
+			</tr>
+			<tr>
+				<td><%=@finder.price%></td>	
+				<td><strong><%=@finder.a_time%></strong></td>
+			</tr>
 			<tr>
 				<td>停留所</td>
-				<td></td>
-				<td colspan="2"><strong><%=@finder.f_to%></strong>
+				<td><strong><%=@finder.f_to%></strong>
 				</td>
 			</tr>
 		</table>
