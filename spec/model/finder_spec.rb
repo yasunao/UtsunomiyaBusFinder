@@ -12,7 +12,7 @@ RSpec.describe Finder, :type => :model do
     @f_date_day ||= Date.today.day
     @f_hour ||= 7
     @f_min ||= 30
-    @f_from ||= "宇都宮駅西"
+    @f_from ||= "宇都宮駅西口"
     @f_to ||= "桜小学校入口"
     @finder=Finder.new(@f_date_year,@f_date_month,@f_date_day,@f_hour,@f_min,@f_from,@f_to)
     @platform_ids=ids_created_platforms_examples
@@ -20,9 +20,21 @@ RSpec.describe Finder, :type => :model do
   after :all do
     Platform.delete(@platform_ids)
   end
-  context "finder.get_titleについて" do
-    it "取得したページは<title>運賃・経路－関東自動車株式会社</title>を含む" do
-      expect(@finder.get_title).to eq "運賃・経路－関東自動車株式会社"
+  context "今日の朝７時３０分、宇都宮駅西発、桜小学校入口着のバスについて検索すると、" do
+    describe "finderのインスタンス変数について" do
+      it "出発停留所名は宇都宮駅西口、到着停留所名は桜小学校入り口" do
+        expect(@finder.f_from).to eq "宇都宮駅西口"
+        expect(@finder.f_to).to eq "桜小学校入口"
+      end
+      it "は、所要時間8分、出発時間7:30,系統番号は55、系統名は作新学院経由・宝木団地、touchakujikokuha7:38,大人運賃は２１０円" do
+        #binding.pry
+        expect(@finder.time_required).to eq "8分"
+        expect(@finder.d_time).to eq "07:30"
+        expect(@finder.platform_number).to eq "55"
+        expect(@finder.platform_name).to eq "作新学院経由・宝木団地"
+        expect(@finder.a_time).to eq "07:38"
+        expect(@finder.price).to eq "大人運賃：210円"
+      end
     end
   end
 end
