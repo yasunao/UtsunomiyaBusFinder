@@ -7,6 +7,7 @@ RSpec.describe Finder, :type => :model do
   include ActionDispatch::TestProcess
   include PlatformFixture
   before :all do
+    ids_created_platforms_examples
     @f_date_year ||= Date.today.year
     @f_date_month ||= Date.today.month
     @f_date_day ||= Date.today.day
@@ -34,6 +35,11 @@ RSpec.describe Finder, :type => :model do
         expect(@finder.platform_name).to eq "作新学院経由・宝木団地"
         expect(@finder.a_time).to eq "07:38"
         expect(@finder.price).to eq "大人運賃：210円"
+      end
+    end
+    describe "finderのプライベートメソッド、get_bording_numberについて" do 
+      it "は、'1番 2番'を返す" do
+        expect(@finder.bording_number).to eq "1番 2番"
       end
     end
   end
