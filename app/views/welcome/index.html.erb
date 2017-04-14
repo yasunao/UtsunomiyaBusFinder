@@ -1,19 +1,19 @@
 <h1>関東バス宇都宮駅西口発、バス乗り場検索</h1>
 <table>
 <tr>
-	<td nowrap="nowrap" style="background:#EFEFF0;padding:4px;text-align:right">停留所</td>
-	<td style="background:#EFEFF0;padding:4px;text-align:center;" width="26"></td>
+	<td style="background:#EFEFF0;padding:4px;text-align:right">停留所</td>
+	<td style="background:#EFEFF0;padding:4px;text-align:center;"></td>
 	<td style="background:#EFEFF0;padding:4px;" colspan="2"><strong style="font-size:123%;color:#333;font-weight:bold;"><%=@finder.f_from%></strong>
 	<a href="http://kantobus.info/timetable/select/?no=1&pu_rn=436&pu_rt=1" target="_blank" class="action_button">時刻表を表示</a>
 
 </tr>
 
 <tr>
-	<td nowrap="nowrap" width="1%" style="padding-right:8px;vertical-align:middle;text-align:right;">
+	<td nowrap="nowrap" style="padding-right:8px;vertical-align:middle;text-align:right;">
 	<span style="font-size:88%;color:#666;"><%=@finder.time_required%></span></td>
 	<td></td>
 	<td style="padding-left:8px;">
-	<strong style="color:#333;font-weight:bold;font-size:1.2em;"><%=@finder.d_time%></strong><br />
+	<strong style="color:#333;font-weight:bold;"><%=@finder.d_time%></strong><br />
 	<div style="padding-left:10px;">（乗り場：<%=@finder.bording_number%>）
 		<span style="display:inline-block;"><span style="color:#3A7F00;" no="436" rt="1">
 			<%=@finder.platform_number%> <%=@finder.platform_name%>
@@ -21,7 +21,7 @@
 	行</span>
 	<br />
 	</div>
-	<strong style="color:#333;font-weight:bold;font-size:1.2em;"><%=@finder.a_time%></strong>
+	<strong style="color:#333;font-weight:bold;"><%=@finder.a_time%></strong>
 	</td>
 	<td style="padding-left:8px;vertical-align:middle;text-align:right;">
 		<strong style="color:#F77;"><%=@finder.price%></strong>
@@ -32,7 +32,7 @@
 
 <tr>
 	<td nowrap="nowrap" style="background:#EFEFF0;padding:4px;text-align:right">停留所</td>
-	<td style="background:#EFEFF0;padding:4px;text-align:center;" width="26"></td>
+	<td style="background:#EFEFF0;padding:4px;text-align:center;"></td>
 	<td style="background:#EFEFF0;padding:4px;" colspan="2"><strong style="font-size:123%;color:#333;font-weight:bold;"><%=@finder.f_to%></strong>
 	</td>
 
