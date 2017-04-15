@@ -42,5 +42,10 @@ RSpec.describe Finder, :type => :model do
         expect(@finder.bording_number).to eq "1番 2番"
       end
     end
+    describe "finderのプライベートメソッド、get_next_busについて" do 
+      it "は、次のバスの時間、2017年4月15日7時38分のパラメータを返す" do
+        expect(@finder.next_bus_params).to eq ["2017", "4", "15", "7", "38"]
+      end
+    end
   end
 end
