@@ -7,7 +7,7 @@ RSpec.describe Finder, :type => :model do
   include ActionDispatch::TestProcess
   include PlatformFixture
   before :all do
-    ids_created_platforms_examples
+    @platform_ids=ids_created_platforms_examples
     @f_date_year ||= Date.today.year
     @f_date_month ||= Date.today.month
     @f_date_day ||= Date.today.day
@@ -15,8 +15,8 @@ RSpec.describe Finder, :type => :model do
     @f_min ||= 30
     @f_from ||= "宇都宮駅西口"
     @f_to ||= "桜小学校入口"
-    @finder=Finder.new(@f_date_year,@f_date_month,@f_date_day,@f_hour,@f_min,@f_from,@f_to)
-    @platform_ids=ids_created_platforms_examples
+    @url ||= nil
+    @finder=Finder.new(@f_date_year,@f_date_month,@f_date_day,@f_hour,@f_min,@f_from,@f_to,@url)
   end
   after :all do
     Platform.delete(@platform_ids)
@@ -28,7 +28,6 @@ RSpec.describe Finder, :type => :model do
         expect(@finder.f_to).to eq "桜小学校入口"
       end
       it "は、所要時間8分、出発時間7:30,系統番号は55、系統名は作新学院経由・宝木団地、touchakujikokuha7:38,大人運賃は２１０円" do
-        #binding.pry
         expect(@finder.time_required).to eq "8分"
         expect(@finder.d_time).to eq "07:30"
         expect(@finder.platform_number).to eq "55"
@@ -42,9 +41,16 @@ RSpec.describe Finder, :type => :model do
         expect(@finder.bording_number).to eq "1番 2番"
       end
     end
-    describe "finderのプライベートメソッド、get_next_busについて" do 
-      it "は、次のバスの時間、2017年4月15日7時38分のパラメータを返す" do
-        expect(@finder.next_bus_params).to eq ["2017", "4", "15", "7", "38"]
+    describe "finderのプライベートメソッド、get_next_bus_urlおよびget_prev_bus_urlについて" do 
+      it "は、次のバスの時間、2017年4月15日7時32分に準じたURLを返す" do
+        a=@finder.prev_bus_url
+        b="http://kantobus.info/route/result/?f_mode=2&f_type_fromto=2&fs_from=1&f_from_type=1&f_from_genre=&fs_to=32&fs_through=&f_to_type=1&f_to_genre=&f_date_Year=2017&f_date_Month=4&f_date_Day=17&f_hour=7&f_min=37&f_wait=10&f_from=%E5%AE%87%E9%83%BD%E5%AE%AE%E9%A7%85%E8%A5%BF%E5%8F%A3&f_to=%E6%A1%9C%E5%B0%8F%E5%AD%A6%E6%A0%A1%E5%85%A5%E5%8F%A3&f_through="
+        expect(a.split(//)-b.split(//)).to eq []
+      end
+      it "は、前のバスの時間、2017年4月15日7時32分に準じたURLを返す" do
+        a=@finder.next_bus_url
+        b="http://kantobus.info/route/result/?f_mode=2&f_type_fromto=1&fs_from=1&f_from_type=1&f_from_genre=&fs_to=32&fs_through=&f_to_type=1&f_to_genre=&f_date_Year=2017&f_date_Month=4&f_date_Day=17&f_hour=7&f_min=31&f_wait=10&f_from=%E5%AE%87%E9%83%BD%E5%AE%AE%E9%A7%85%E8%A5%BF%E5%8F%A3&f_to=%E6%A1%9C%E5%B0%8F%E5%AD%A6%E6%A0%A1%E5%85%A5%E5%8F%A3&f_through="
+        expect(a.split(//)-b.split(//)).to eq []
       end
     end
   end

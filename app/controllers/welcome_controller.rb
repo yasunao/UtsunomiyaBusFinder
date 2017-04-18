@@ -8,6 +8,7 @@ class WelcomeController < ApplicationController
     @f_min ||= Time.now.min
     @f_from ||= "宇都宮駅西"
     @f_to ||= "桜小学校入口"
-    @finder=Finder.new(@f_date_year,@f_date_month,@f_date_day,@f_hour,@f_min,@f_from,@f_to)
+    @url = params[:url]
+    @finder=Finder.new(@f_date_year,@f_date_month,@f_date_day,@f_hour,@f_min,@f_from,@f_to,@url)
   end
 end

@@ -5,12 +5,15 @@
 		<table class="table">
 			<tr>
 				<td>
-					乗り場：<%=@finder.bording_number%>
+					<%=link_to '前のバス',{:controller=>:welcome,:action=>:index,:url=>@finder.prev_bus_url},:class=>'btn btn-mini btn-primary' %>
+					<%=link_to '次のバス',{:controller=>:welcome,:action=>:index,:url=>@finder.next_bus_url},:class=>'btn btn-mini btn-primary' %>
 				</td>
 			</tr>
 
 			<tr>
-				<td><strong><%=@finder.d_time%></strong></td>
+				<td><strong><%=@finder.d_time%></strong>
+					乗り場：<%=@finder.bording_number%>
+				</td>
 			</tr>
 			<tr>
 				<td><%=@finder.platform_number%> <%=@finder.platform_name%>行</td>
